@@ -1,7 +1,47 @@
 "use client"
 import { TextField, Button, Grid, Box, Typography } from "@mui/material";
+import { useState } from "react";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import useUserStore from "@/app/store/userStore";
 
 export default function SignIn() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  let setUser = useUserStore(state => state.setUser)
+  let user = useUserStore(state => state.user)
+
+  console.log(user)
+  let mutation = useMutation({
+    mutationFn : (data) => axios.post('http://localhost:4000/api/login', data, { withCredentials: true }),
+    onSuccess: (response) => {
+      setEmail('')
+      setPassword('')
+      setUser(response.data)
+      window.location.href = '/pages/userDashboard'
+    },
+    onError: (error) => {
+      Swal.fire({
+        icon: 'error',
+        title:error.response.data,
+        text: "please try again"
+      })
+    }
+  })
+
+
+  let signIn = () => {
+    let user = {
+      username: email,
+      password: password
+    }
+    mutation.mutate(user)
+  }
+
+
   return (
     <Box 
       sx={{
@@ -32,7 +72,9 @@ export default function SignIn() {
                 label="Email"
                 variant="outlined"
                 type="email"
+                value={email}
                 required
+                onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -41,7 +83,9 @@ export default function SignIn() {
                 label="Password"
                 variant="outlined"
                 type="password"
+                value={password}
                 required
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -50,6 +94,7 @@ export default function SignIn() {
                 variant="contained" 
                 color="primary"
                 sx={{ padding: '12px' }}
+                onClick={signIn}
               >
                 Sign In
               </Button>
