@@ -10,10 +10,13 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
+
 const UserNavbar = () => {
 
     let clearUser = useUserStore(state => state.clearUser);
     let router = useRouter();
+
+    let user = useUserStore((state) => state.user)
 
     let mutation = useMutation({
         mutationFn: () => axios.post('http://localhost:4000/api/logout', {}, { withCredentials: true }),
@@ -28,14 +31,14 @@ const UserNavbar = () => {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        USER
+                        USER : {user?.name}
                     </Typography>
 
                     {/* Navigation Links */}
                     <Button color="inherit" onClick={() => router.push('/pages/userDashboard')}  sx={{ marginLeft: 1 }}>Dashboard</Button>
                     <Button color="inherit" onClick={() => router.push('/pages/userRequestDocuments')}  sx={{ marginLeft: 1 }}>Request Document</Button>
-                    <Button color="inherit" onClick={() => router.push('/all-requests')}  sx={{ marginLeft: 1 }}>All Requests</Button>
-                    <Button color="inherit" onClick={() => router.push('/history')}  sx={{ marginLeft: 1 }}>History</Button>
+                    <Button color="inherit" onClick={() => router.push('/pages/userAllRequest')}  sx={{ marginLeft: 1 }}>All Requests</Button>
+                    <Button color="inherit" onClick={() => router.push('/pages/userHistory')}  sx={{ marginLeft: 1 }}>History</Button>
 
                     {/* Logout Button */}
                     <Button color="inherit"  onClick={() => mutation.mutate()} sx={{ marginLeft: 5 }}>Logout</Button>
