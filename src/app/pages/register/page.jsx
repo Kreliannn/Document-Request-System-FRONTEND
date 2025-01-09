@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import LandingpageNavbar from "@/app/publicComponent/landingpageNavbar";
 export default function SignUp() {
     
     const [name, setName] = useState('');
@@ -48,6 +48,9 @@ export default function SignUp() {
 
 
   return (
+    <>
+    <LandingpageNavbar />
+    <br />
     <Box 
       sx={{
         display: 'flex',
@@ -67,9 +70,12 @@ export default function SignUp() {
           width: 400,
         }}
       >
-        <Typography variant="h5" gutterBottom align="center">
-          Sign Up
-        </Typography>
+        <Typography variant="h4" gutterBottom align="center" className="font-bold text-primary">
+            Sign Up
+          </Typography>
+          <Typography variant="body1" align="center" className="mb-6 text-gray-600">
+           Create your account 
+          </Typography>
         <form>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -136,5 +142,6 @@ export default function SignUp() {
         </form>
       </Box>
     </Box>
+    </>
   );
 }

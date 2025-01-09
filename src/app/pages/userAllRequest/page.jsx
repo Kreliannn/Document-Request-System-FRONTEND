@@ -18,9 +18,10 @@ import UserNavbar from '@/app/publicComponent/userNavbar';
 import CancelButton from './components/cancelButton';
 
 
+
 export default function RequestTable() {
   
-    let [request, setRequest] = useState(null)
+    let [request, setRequest] = useState([])
 
     let { data } = useQuery({
       queryKey : ["userRequest"],
@@ -34,7 +35,7 @@ export default function RequestTable() {
         }
      }, [data])
 
-    
+   
  
 
     let convertDate = (rawDate) =>
@@ -51,6 +52,10 @@ export default function RequestTable() {
         return(formattedDate); // Output: 1/8/2025
     }
 
+
+   
+
+ 
 
   return (
     <>
@@ -82,7 +87,34 @@ export default function RequestTable() {
                 <TableCell>{row.transaction}</TableCell>
                 <TableCell>{row.fee}</TableCell>
                 <TableCell>{convertDate(row.requestDate)}</TableCell>
-                <TableCell>{row.status}</TableCell>
+                <TableCell>
+                  {row.status === "Pending" && (
+                    <span className="inline-block px-3 py-1 text-sm font-semibold text-yellow-800 bg-yellow-100 rounded-full">
+                      {row.status}
+                    </span>
+                  )}
+                  {row.status === "InProcess" && (
+                    <span className="inline-block px-3 py-1 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full">
+                      {row.status}
+                    </span>
+                  )}
+                  {row.status === "ToReceived" && (
+                    <span className="inline-block px-3 py-1 text-sm font-semibold text-violet-800 bg-violet-100 rounded-full">
+                      {row.status}
+                    </span>
+                  )}
+                  {row.status === "Rejected" && (
+                    <span className="inline-block px-3 py-1 text-sm font-semibold text-red-800 bg-red-100 rounded-full">
+                      {row.status}
+                    </span>
+                  )}
+                  {row.status === "Completed" && (
+                    <span className="inline-block px-3 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">
+                      {row.status}
+                    </span>
+                  )}
+                </TableCell>
+
                 <TableCell>
                   <CancelButton status={row.status} reqId={row._id} />
                 </TableCell>

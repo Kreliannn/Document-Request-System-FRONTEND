@@ -2,7 +2,7 @@
 import { TextField, Button, Grid, Box, Typography } from "@mui/material";
 import { useState } from "react";
 import Swal from "sweetalert2";
-
+import LandingpageNavbar from "@/app/publicComponent/landingpageNavbar";
 export default function AdminLogin() {
 
   const [username, setUsername] = useState('');
@@ -24,6 +24,9 @@ export default function AdminLogin() {
   }
 
   return (
+    <>
+    <LandingpageNavbar />
+    
     <Box 
       sx={{
         display: 'flex',
@@ -44,9 +47,9 @@ export default function AdminLogin() {
           width: 400,
         }}
       >
-        <Typography variant="h5" gutterBottom align="center">
-          Admin Login
-        </Typography>
+        <Typography variant="h4" gutterBottom align="center" className="font-bold text-primary">
+            Admin Login
+          </Typography>
         <form>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -86,5 +89,6 @@ export default function AdminLogin() {
         </form>
       </Box>
     </Box>
+    </>
   );
 }

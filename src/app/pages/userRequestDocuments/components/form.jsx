@@ -172,11 +172,11 @@ export default function RequestDocumentForm() {
               required
               className="shadow-lg"
             >
-              <MenuItem value="barangayClearance">Barangay Clearance</MenuItem>
-              <MenuItem value="certificateOfResidency">Certificate of Residency</MenuItem>
-              <MenuItem value="businessPermit">Business Permit</MenuItem>
-              <MenuItem value="certificateOfIndigency">Certificate of Indigency</MenuItem>
-              <MenuItem value="barangayID">Barangay ID</MenuItem>
+              <MenuItem value="Indigency"> Barangay Indigency Certificate</MenuItem>
+              <MenuItem value="Clearance"> Barangay Clearance </MenuItem>
+              <MenuItem value="Residency"> Barangay Residency Certificate</MenuItem>
+              <MenuItem value="BussinessPermit">Barangay Bussiness Permit</MenuItem>
+              <MenuItem value="Endorsment">Barangay Endorsment</MenuItem>
             </Select>
           </FormControl>
           <TextField

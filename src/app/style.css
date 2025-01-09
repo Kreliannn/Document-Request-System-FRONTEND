@@ -1,0 +1,7 @@
+
+
+.example {
+    background-image: url('/img/img2.jpeg');
+    background-size: cover;
+    background-position: center;
+}

@@ -38,6 +38,7 @@ const UserNavbar = () => {
                     <Button color="inherit" onClick={() => router.push('/pages/userDashboard')}  sx={{ marginLeft: 1 }}>Dashboard</Button>
                     <Button color="inherit" onClick={() => router.push('/pages/userRequestDocuments')}  sx={{ marginLeft: 1 }}>Request Document</Button>
                     <Button color="inherit" onClick={() => router.push('/pages/userAllRequest')}  sx={{ marginLeft: 1 }}>All Requests</Button>
+                    <Button color="inherit" onClick={() => router.push('/pages/userNotification')}  sx={{ marginLeft: 1 }}>Notification</Button>
                     <Button color="inherit" onClick={() => router.push('/pages/userHistory')}  sx={{ marginLeft: 1 }}>History</Button>
 
                     {/* Logout Button */}
