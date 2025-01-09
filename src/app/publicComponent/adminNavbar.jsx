@@ -26,7 +26,7 @@ const AdminNavbar = () => {
                     </Typography>
 
                     {/* Navigation Links */}
-                    <Button color="inherit" onClick={() => router.push('/pages/userDashboard')}  sx={{ marginLeft: 1 }}>Dashboard</Button>
+                    <Button color="inherit" onClick={() => router.push('/pages/adminDashboard')}  sx={{ marginLeft: 1 }}>Dashboard</Button>
                     <Button color="inherit" onClick={() => router.push('/pages/adminAllRequest')}  sx={{ marginLeft: 1 }}>All Request</Button>
                     
 

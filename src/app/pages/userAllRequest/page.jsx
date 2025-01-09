@@ -54,6 +54,7 @@ export default async function RequestTable() {
               <TableCell className="font-bold">Fee</TableCell>
               <TableCell className="font-bold">RequestDate</TableCell>
               <TableCell className="font-bold">Status</TableCell>
+              <TableCell className="font-bold">Cancel</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -66,6 +67,16 @@ export default async function RequestTable() {
                 <TableCell>{row.fee}</TableCell>
                 <TableCell>{convertDate(row.requestDate)}</TableCell>
                 <TableCell>{row.status}</TableCell>
+                <TableCell>
+                <Button 
+                  variant="contained" 
+                  color="error" 
+                  className="bg-red-500 hover:bg-red-600"
+                  
+                >
+                  cancel
+                </Button>
+              </TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -1,4 +1,3 @@
-"use client"
 import useUserStore from "@/app/store/userStore"
 import UserNavbar from "@/app/publicComponent/userNavbar"
 import { Card, CardContent, Typography } from '@mui/material';

@@ -11,7 +11,8 @@ import {
   Paper, 
   Button 
 } from '@mui/material';
-
+import ApproveButton from './approveButton';
+import RejectButton from './rejectButton';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
@@ -63,22 +64,10 @@ export default function RequestTable() {
               <TableCell>{convertDate(row.requestDate)}</TableCell>
               <TableCell>{row.status}</TableCell>
               <TableCell>
-                <Button 
-                  variant="contained" 
-                  color="error" 
-                  className="bg-red-500 hover:bg-red-600"
-                >
-                  Reject
-                </Button>
+                <RejectButton reqId={row._id} />
               </TableCell>
               <TableCell>
-                <Button 
-                  variant="contained" 
-                  color="success" 
-                  className="bg-green-500 hover:bg-green-600"
-                >
-                  Approve
-                </Button>
+                <ApproveButton reqId={row._id} />
               </TableCell>
             </TableRow>
           ))}

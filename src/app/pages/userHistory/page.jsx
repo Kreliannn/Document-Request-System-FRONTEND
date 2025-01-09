@@ -40,7 +40,7 @@ export default async function RequestTable() {
     <>
         <UserNavbar />
         <br />
-       <h1 className='text-center text-xl m-3'> User Request Status </h1>
+       <h1 className='text-center text-xl m-3'> Request Documents History </h1>
         <hr />
         <TableContainer component={Paper} className="w-full max-w-4xl mx-auto mt-8">
         
@@ -53,7 +53,7 @@ export default async function RequestTable() {
               <TableCell className="font-bold">Transaction</TableCell>
               <TableCell className="font-bold">Fee</TableCell>
               <TableCell className="font-bold">RequestDate</TableCell>
-              <TableCell className="font-bold">PickUpDate</TableCell>
+              <TableCell className="font-bold">ReceivedDate</TableCell>
               <TableCell className="font-bold">Status</TableCell>
             </TableRow>
           </TableHead>
@@ -66,7 +66,7 @@ export default async function RequestTable() {
                 <TableCell>{row.transaction}</TableCell>
                 <TableCell>{row.fee}</TableCell>
                 <TableCell>{convertDate(row.requestDate)}</TableCell>
-                <TableCell>{convertDate(row.requestDate)}</TableCell>
+                <TableCell>{convertDate(row.receivedDate)}</TableCell>
                 <TableCell>{row.status}</TableCell>
               </TableRow>
             ))}
