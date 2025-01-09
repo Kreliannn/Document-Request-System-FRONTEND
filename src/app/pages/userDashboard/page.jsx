@@ -1,27 +1,39 @@
+"use client"
 import useUserStore from "@/app/store/userStore"
 import UserNavbar from "@/app/publicComponent/userNavbar"
 import { Card, CardContent, Typography } from '@mui/material';
+import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
 
 export default function UserDashboard() {
 
-    
-    let pendingRequests = 2
-    let completedRequest = 2
-    let approvedRequests = 2
-    let rejectedRequest = 2
-    let forPickupRequests = 2
-    let forDeliveryRequests = 2
 
-     
+    let [info, setInfo] = useState(null)
     
-      const stats = [
-        { title: 'Pending Requests', count: pendingRequests, color: 'bg-yellow-500' },
-        { title: 'Completed Requests', count: completedRequest, color: 'bg-purple-500' },
-        { title: 'Approved Requests', count: approvedRequests, color: 'bg-green-500' },
-        { title: 'Rejected Requests', count: rejectedRequest, color: 'bg-red-500' },
-        { title: 'For Pickup', count: forPickupRequests, color: 'bg-blue-500' },
-        { title: 'For Delivery', count: forDeliveryRequests, color: 'bg-gray-500' },
-      ];
+    let { data } = useQuery({
+        queryKey : ["adminData"],
+        queryFn : () => axios.get('http://localhost:4000/api/userDashboard', {withCredentials : true})
+    })
+
+    useEffect(() => {
+        if(data)
+        {
+            let response = data.data
+            
+            setInfo([
+                { title: 'Pending Requests', count: response.pendingRequest, color: 'bg-yellow-500' },
+                { title: 'Completed Requests', count: response.completedRequest, color: 'bg-purple-500' },
+                { title: 'Approved Requests', count: response.approvedRequest, color: 'bg-green-500' },
+                { title: 'Rejected Requests', count: response.rejectRequest, color: 'bg-red-500' },
+                { title: 'For Pickup', count: response.forPickUpRequest, color: 'bg-blue-500' },
+                { title: 'For Delivery', count: response.forDeliverRequest, color: 'bg-gray-500' },
+              ] )
+        }
+    }, [data])
+
+    
 
     return (
         <div>
@@ -33,7 +45,7 @@ export default function UserDashboard() {
             </Typography>
             <br />
             <div className="container m-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-4" style={{width : "70%"}}>
-                {stats.map((stat, index) => (
+                {info?.map((stat, index) => (
                     <Card
                     key={index}
                     className={`shadow-lg ${stat.color} text-white`}

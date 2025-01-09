@@ -2,13 +2,19 @@
 import { Button } from "@mui/material"
 import { useMutation } from "@tanstack/react-query"
 import Swal from "sweetalert2"
+import useRequestStore from "@/app/store/requestStore"
+import axios from "axios"
 
-
-export default function RejectButton(props)
+export default function ButtonReject(props)
 {
-    let requestId = props.reqId
+    
+  let removeRequest = useRequestStore((state) => state.removeRequest)
 
-    let approve = () => {
+    let mutation = useMutation({
+      mutationFn : (data) => axios.patch(`http://localhost:4000/api/rejectRequest/${data}`),
+    })
+
+    let reject = () => {
         Swal.fire({
             title: "Are you sure you want to Reject this request?",
             text: "You won't be able to revert this!",
@@ -18,6 +24,10 @@ export default function RejectButton(props)
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes"
           }).then((result) => {
+
+            mutation.mutate(props.reqId)
+            removeRequest(props.reqId)
+
             if (result.isConfirmed) {
               Swal.fire({
                 title: "rejected!",
@@ -34,7 +44,7 @@ export default function RejectButton(props)
                  variant="contained" 
                  color="error" 
                  className="bg-red-500 hover:bg-red-600"
-                onClick={approve}
+                onClick={reject}
             >
                   Reject
             </Button>

@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { 
   Table, 
@@ -7,19 +8,31 @@ import {
   TableHead, 
   TableRow, 
   Paper, 
-  Button 
+  Button, 
+  setRef
 } from '@mui/material';
 
-
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserNavbar from '@/app/publicComponent/userNavbar';
+import { useQuery } from '@tanstack/react-query'
 
+export default  function RequestTable() {
 
-export default async function RequestTable() {
+    let [request, SetRequest] = useState(null)
+  
+    let { data } = useQuery({
+      queryKey : ["historyUser"],
+      queryFn : () => axios.get("http://localhost:4000/api/userRequestHistory", { withCredentials : true})
+    })
+    
+    useEffect(() => {
+      if(data)
+      {
+        SetRequest(data.data)
+      }
+    }, [data])
 
-    let data = await axios.get("http://localhost:4000/api/getRequest")
-
-    let request = data?.data
 
     let convertDate = (rawDate) =>
     {
@@ -42,7 +55,7 @@ export default async function RequestTable() {
         <br />
        <h1 className='text-center text-xl m-3'> Request Documents History </h1>
         <hr />
-        <TableContainer component={Paper} className="w-full max-w-4xl mx-auto mt-8">
+        <TableContainer component={Paper} className="w-4/5 mx-auto mt-8">
         
         <Table className="min-w-full  shadow-lg">
           <TableHead>

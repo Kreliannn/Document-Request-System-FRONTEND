@@ -12,16 +12,29 @@ import {
   Button 
 } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
+import ButtontoReceive from './buttontoReceive';
 import axios from 'axios';
+import { useEffect } from 'react';
+import useApproveRequestStore from '@/app/store/approveRequestStore';
 
 export default function ApprovedRequestTable() {
 
+    let request = useApproveRequestStore((state) => state.request)
+    let setRequest = useApproveRequestStore((state) => state.setRequest)
+
     let { data } = useQuery({
         queryKey : ['request'],
-        queryFn : () => axios.get("http://localhost:4000/api/getRequest")
+        queryFn : () => axios.get("http://localhost:4000/api/getRequest/InProcess")
     })
 
-    let request = data?.data
+    useEffect(() => {
+      if(data)
+      {
+        setRequest(data.data)
+      }
+    }, [data])
+
+
 
     let convertDate = (rawDate) =>
         {
@@ -70,13 +83,7 @@ export default function ApprovedRequestTable() {
                 <TableCell>{row.contactNumber}</TableCell>
                 <TableCell>{row.status}</TableCell>
                 <TableCell>
-                  <Button
-                    variant="contained"
-                    color="success"
-                    className="bg-green-500 hover:bg-green-600"
-                  >
-                    Complete
-                  </Button>
+                  <ButtontoReceive reqId={row._id} />
                 </TableCell>
               </TableRow>
             ))}

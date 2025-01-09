@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { use } from 'react';
 import { 
   Table, 
   TableBody, 
@@ -11,19 +11,30 @@ import {
   Paper, 
   Button 
 } from '@mui/material';
-import ApproveButton from './approveButton';
-import RejectButton from './rejectButton';
+import ButtonApprove from './buttonApprove';
+import ButtonReject from './buttonReject';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import useRequestStore from '@/app/store/requestStore';
+import { useEffect } from 'react';
 
 export default function RequestTable() {
 
+  let request = useRequestStore((state) => state.request)
+  let setRequest = useRequestStore((state) => state.setRequest)
+
     let { data } = useQuery({
         queryKey : ['request'],
-        queryFn : () => axios.get("http://localhost:4000/api/getRequest")
+        queryFn : () => axios.get("http://localhost:4000/api/getRequest/Pending")
     })
 
-    let request = data?.data
+    useEffect(() => {
+      if(data)
+      {
+        setRequest(data.data)
+      }
+    }, [data])
+    
 
     let convertDate = (rawDate) =>
     {
@@ -64,10 +75,10 @@ export default function RequestTable() {
               <TableCell>{convertDate(row.requestDate)}</TableCell>
               <TableCell>{row.status}</TableCell>
               <TableCell>
-                <RejectButton reqId={row._id} />
+                <ButtonReject reqId={row._id} />
               </TableCell>
               <TableCell>
-                <ApproveButton reqId={row._id} />
+                <ButtonApprove reqId={row._id} />
               </TableCell>
             </TableRow>
           ))}

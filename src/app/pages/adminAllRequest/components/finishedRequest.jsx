@@ -13,15 +13,27 @@ import {
 } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { useEffect } from 'react';
+import useCompleteRequestStore from '@/app/store/completeRequestStore';
+import ButtontoComplete from './buttonCompleted';
+
 
 export default function finishedRequestTable() {
 
+    let request = useCompleteRequestStore((state) => state.request)
+    let setRequest = useCompleteRequestStore((state) => state.setRequest)
+
     let { data } = useQuery({
         queryKey : ['request'],
-        queryFn : () => axios.get("http://localhost:4000/api/getRequest")
+        queryFn : () => axios.get("http://localhost:4000/api/getRequest/ToReceived")
     })
 
-    let request = data?.data
+    useEffect(() => {
+      if(data)
+      {
+        setRequest(data.data)
+      }
+    }, [data])
 
 
   return (
@@ -53,13 +65,7 @@ export default function finishedRequestTable() {
               <TableCell>{row.fee}</TableCell>
               <TableCell>{row.status}</TableCell>
               <TableCell>
-                <Button 
-                  variant="contained" 
-                  color="success" 
-                  className="bg-green-500 hover:bg-green-600"
-                >
-                  Claimed
-                </Button>
+                <ButtontoComplete reqId={row._id} />
               </TableCell>
             </TableRow>
           ))}

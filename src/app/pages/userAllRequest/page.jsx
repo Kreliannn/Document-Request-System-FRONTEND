@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { 
   Table, 
@@ -9,17 +10,32 @@ import {
   Paper, 
   Button 
 } from '@mui/material';
-
+import { useState, useEffect } from 'react';
 
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 import UserNavbar from '@/app/publicComponent/userNavbar';
+import CancelButton from './components/cancelButton';
 
 
-export default async function RequestTable() {
+export default function RequestTable() {
+  
+    let [request, setRequest] = useState(null)
 
-    let data = await axios.get("http://localhost:4000/api/getRequest")
+    let { data } = useQuery({
+      queryKey : ["userRequest"],
+      queryFn : () => axios.get("http://localhost:4000/api/userRequest", {withCredentials : true})
+    })
 
-    let request = data?.data
+     useEffect(() => {
+        if(data)
+        {
+          setRequest(data.data)
+        }
+     }, [data])
+
+    
+ 
 
     let convertDate = (rawDate) =>
     {
@@ -42,7 +58,7 @@ export default async function RequestTable() {
         <br />
        <h1 className='text-center text-xl m-3'> User Request Status </h1>
         <hr />
-        <TableContainer component={Paper} className="w-full max-w-4xl mx-auto mt-8">
+        <TableContainer component={Paper} className="w-4/5 mx-auto mt-8">
         
         <Table className="min-w-full  shadow-lg">
           <TableHead>
@@ -68,15 +84,8 @@ export default async function RequestTable() {
                 <TableCell>{convertDate(row.requestDate)}</TableCell>
                 <TableCell>{row.status}</TableCell>
                 <TableCell>
-                <Button 
-                  variant="contained" 
-                  color="error" 
-                  className="bg-red-500 hover:bg-red-600"
-                  
-                >
-                  cancel
-                </Button>
-              </TableCell>
+                  <CancelButton status={row.status} reqId={row._id} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
