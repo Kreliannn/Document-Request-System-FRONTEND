@@ -44,7 +44,7 @@ export default function UserDashboard() {
                 User Dashboard
             </Typography>
             <br />
-            <div className="container m-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-4" style={{width : "70%"}}>
+            <div className="container m-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-4 w-screen md:w-3/4" >
                 {info?.map((stat, index) => (
                     <Card
                     key={index}
