@@ -49,7 +49,7 @@ export default function AdminDashboard() {
             <div className="container m-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-4" style={{width : "70%"}}>
                 
                     <Card
-                    key={index}
+                    
                     className={`shadow-lg bg-black text-white`}
                     >
                     <CardContent>
@@ -64,7 +64,7 @@ export default function AdminDashboard() {
 
 
                     <Card
-                    key={index}
+                    
                     className={`shadow-lg bg-black text-white`}
                     >
                     <CardContent>
@@ -80,7 +80,7 @@ export default function AdminDashboard() {
 
 
                     <Card
-                    key={index}
+                    
                     className={`shadow-lg bg-black text-white`}
                     >
                     <CardContent>
@@ -96,7 +96,7 @@ export default function AdminDashboard() {
 
 
                     <Card
-                    key={index}
+                    
                     className={`shadow-lg bg-black text-white`}
                     >
                     <CardContent>
@@ -113,7 +113,7 @@ export default function AdminDashboard() {
 
 
                     <Card
-                    key={index}
+                    
                     className={`shadow-lg bg-black text-white`}
                     >
                     <CardContent>
@@ -129,7 +129,7 @@ export default function AdminDashboard() {
 
 
                     <Card
-                    key={index}
+                    
                     className={`shadow-lg bg-black text-white`}
                     >
                     <CardContent>
