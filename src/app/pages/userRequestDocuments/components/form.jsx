@@ -11,6 +11,7 @@ import {
   Typography,
   ThemeProvider,
   createTheme,
+  Paper
 } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
@@ -32,7 +33,11 @@ export default function RequestDocumentForm() {
   const [documentType, setDocumentType] = useState('');
   const [purpose, setPurpose] = useState('');
   const [paymentMode, setPaymentMode] = useState('');
+  const [referenceNumber, setReferenceNumber] = useState('');
   const [transaction, setTransaction] = useState('');
+ 
+  const [feeDoc, setFeeDoc] = useState(0);
+  const [feeDel, setFeeDel] = useState(0);
 
   let mutation = useMutation({
     mutationFn: (data) => axios.post('http://localhost:4000/api/requestDocuments', data, { withCredentials: true }),
@@ -48,6 +53,8 @@ export default function RequestDocumentForm() {
       setPurpose('')
       setPaymentMode('')
       setTransaction('')
+      setFeeDel(0)
+      setFeeDel(0)
       Swal.fire({
         icon: 'success',
         title: response.data,
@@ -75,7 +82,9 @@ export default function RequestDocumentForm() {
         typeOfDocument : documentType,
         purpose : purpose,
         transaction : transaction,
-        modeOfPayment : paymentMode
+        modeOfPayment : paymentMode,
+        referenceNumber : referenceNumber,
+        fee : (feeDoc + feeDel)
     })
   }
 
@@ -168,15 +177,43 @@ export default function RequestDocumentForm() {
             <Select
               name="documentType"
               value={documentType}
-              onChange={(e) => setDocumentType(e.target.value)}
+              onChange={(e) => {
+                let document = e.target.value
+                setDocumentType(document)
+                let value = 0
+                switch(document)
+                {
+                  case "Indigency":
+                    value = 30
+                  break;
+
+                  case "Clearance":
+                    value = 25
+                  break;
+
+                  case "Residency":
+                    value = 40
+                  break;
+
+                  case "BussinessPermit":
+                    value = 450
+                  break;
+
+                  case "Endorsment":
+                    value = 50
+                  break;
+                }
+
+                setFeeDoc(value)
+              }}
               required
               className="shadow-lg"
             >
-              <MenuItem value="Indigency"> Barangay Indigency Certificate</MenuItem>
-              <MenuItem value="Clearance"> Barangay Clearance </MenuItem>
-              <MenuItem value="Residency"> Barangay Residency Certificate</MenuItem>
-              <MenuItem value="BussinessPermit">Barangay Bussiness Permit</MenuItem>
-              <MenuItem value="Endorsment">Barangay Endorsment</MenuItem>
+              <MenuItem value="Indigency"> Barangay Indigency Certificate  ₱30 </MenuItem>
+              <MenuItem value="Clearance"> Barangay Clearance ₱25</MenuItem>
+              <MenuItem value="Residency"> Barangay Residency Certificate ₱40</MenuItem>
+              <MenuItem value="BussinessPermit">Barangay Bussiness Permit ₱450</MenuItem>
+              <MenuItem value="Endorsment">Barangay Endorsment ₱50</MenuItem>
             </Select>
           </FormControl>
           <TextField
@@ -195,29 +232,61 @@ export default function RequestDocumentForm() {
             <Select
               name="paymentMode"
               value={paymentMode}
-              onChange={(e) => setPaymentMode(e.target.value)}
+              onChange={(e) => 
+              {
+                let payment = e.target.value
+                setPaymentMode(payment)
+                
+              }}
               required
               className="shadow-lg"
             >
               <MenuItem value="cash">Cash</MenuItem>
-              <MenuItem value="onlineTransfer">Online Transfer</MenuItem>
+              <MenuItem value="BankTransfer">Bank Transfer</MenuItem>
               <MenuItem value="gcash">GCash</MenuItem>
               <MenuItem value="creditCard">Credit Card</MenuItem>
             </Select>
           </FormControl>
+
+          {
+            (paymentMode == "creditCard" || paymentMode == "gcash" || paymentMode == "BankTransfer" ) ? <TextField fullWidth label="Reference Number" name="referenceNumber" value={referenceNumber} onChange={(e) => setReferenceNumber(e.target.value)} required className="shadow-lg" /> : null
+          } 
+          
           <FormControl fullWidth>
             <InputLabel className='bg-white'>Transaction</InputLabel>
             <Select
               name="transaction"
               value={transaction}
-              onChange={(e) => setTransaction(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                setTransaction(value);
+                setFeeDel(value === "deliver" ? 50 : 0);
+                
+              }}
               required
               className="shadow-lg"
             >
               <MenuItem value="pick up">pick up</MenuItem>
-              <MenuItem value="deliver">deliver</MenuItem>
+              <MenuItem value="deliver">deliver ₱50</MenuItem>
             </Select>
           </FormControl>
+
+          
+
+          <Paper className="shadow-lg border">
+            <Typography variant="h4" className="m-3 text-bold">
+              Fee: ₱{feeDoc + feeDel}
+            </Typography>
+
+            {(paymentMode === "creditCard" || 
+              paymentMode === "gcash" || 
+              paymentMode === "BankTransfer") && (
+                <Typography variant="h6" className="m-3">
+                  If you choose online payment, the transaction will follow a "payment-first" policy. Please ensure that you include the reference number before submitting your request; otherwise, the admin will reject it.
+                </Typography>
+            )}
+          </Paper>
+
           <Button 
             type="submit" 
             variant="contained" 

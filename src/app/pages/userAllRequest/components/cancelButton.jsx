@@ -2,16 +2,16 @@
 import { Button } from "@mui/material"
 import { useMutation } from "@tanstack/react-query"
 import Swal from "sweetalert2"
-import useRequestStore from "@/app/store/requestStore"
+import useUserRequestStore from "@/app/store/userRequestStore"
 import axios from "axios"
 
 export default function CancelButton(props)
 {
     
-  let removeRequest = useRequestStore((state) => state.removeRequest)
+  let removeRequest = useUserRequestStore((state) => state.removeRequest)
 
     let mutation = useMutation({
-      mutationFn : (data) => axios.patch(`http://localhost:4000/api/rejectRequest/${data}`),
+      mutationFn : (data) => axios.delete(`http://localhost:4000/api/cancelRequest/` + data)
     })
 
     let cancel = () => {

@@ -14,7 +14,8 @@ import {
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import UserNavbar from '@/app/publicComponent/userNavbar';
+
+import AdminNavbar from '@/app/publicComponent/adminNavbar';
 import { useQuery } from '@tanstack/react-query'
 
 export default  function RequestTable() {
@@ -23,13 +24,14 @@ export default  function RequestTable() {
   
     let { data } = useQuery({
       queryKey : ["historyUser"],
-      queryFn : () => axios.get("http://localhost:4000/api/userRequestHistory", { withCredentials : true})
+      queryFn : () => axios.get("http://localhost:4000/api/requestHistory", { withCredentials : true})
     })
     
     useEffect(() => {
       if(data)
       {
-        SetRequest(data.data)
+        let req = data.data
+        SetRequest(req.reverse())
       }
     }, [data])
 
@@ -51,7 +53,7 @@ export default  function RequestTable() {
 
   return (
     <>
-        <UserNavbar />
+        <AdminNavbar />
         <br />
        <h1 className='text-center text-xl m-3'> Request Documents History </h1>
         <hr />
@@ -80,11 +82,10 @@ export default  function RequestTable() {
                 <TableCell>{row.fee}</TableCell>
                 <TableCell>{convertDate(row.requestDate)}</TableCell>
                 <TableCell>{convertDate(row.receivedDate)}</TableCell>
-                <TableCell>
+                <TableCell>{
                     <span className="inline-block px-3 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">
                       {row.status}
-                    </span>
-                </TableCell>
+                    </span>}</TableCell>
               </TableRow>
             ))}
           </TableBody>

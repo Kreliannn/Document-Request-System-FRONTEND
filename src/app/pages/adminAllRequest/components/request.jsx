@@ -52,7 +52,7 @@ export default function RequestTable() {
 
 
   return (
-    <TableContainer component={Paper} className="w-full max-w-4xl mx-auto mt-8">
+    <TableContainer component={Paper} className="w-100 mx-auto mt-8">
         
       <Table className="min-w-full  shadow-lg">
         <TableHead>
@@ -60,6 +60,9 @@ export default function RequestTable() {
             <TableCell className="font-bold">Full Name</TableCell>
             <TableCell className="font-bold">Type of Document</TableCell>
             <TableCell className="font-bold">Purpose</TableCell>
+            <TableCell className="font-bold">ModeOfPayment</TableCell>
+            <TableCell className="font-bold">Fee</TableCell>
+            <TableCell className="font-bold">ReferenceNum</TableCell>
             <TableCell className="font-bold">RequestDate</TableCell>
             <TableCell className="font-bold">Status</TableCell>
             <TableCell className="font-bold">Reject</TableCell>
@@ -72,6 +75,9 @@ export default function RequestTable() {
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.typeOfDocument}</TableCell>
               <TableCell>{row.purpose}</TableCell>
+              <TableCell>{row.modeOfPayment}</TableCell>
+              <TableCell>{row.fee}</TableCell>
+              <TableCell>{(row.referenceNumber) ? row.referenceNumber : "none"}</TableCell>
               <TableCell>{convertDate(row.requestDate)}</TableCell>
               <TableCell>{row.status}</TableCell>
               <TableCell>

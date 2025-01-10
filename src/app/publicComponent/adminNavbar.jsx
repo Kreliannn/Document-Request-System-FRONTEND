@@ -28,7 +28,7 @@ const AdminNavbar = () => {
                     {/* Navigation Links */}
                     <Button color="inherit" onClick={() => router.push('/pages/adminDashboard')}  sx={{ marginLeft: 1 }}>Dashboard</Button>
                     <Button color="inherit" onClick={() => router.push('/pages/adminAllRequest')}  sx={{ marginLeft: 1 }}>All Request</Button>
-                    
+                    <Button color="inherit" onClick={() => router.push('/pages/adminHistory')}  sx={{ marginLeft: 1 }}>Record History</Button>
 
                     {/* Logout Button */}
                     <Button color="inherit"  onClick={() =>  router.push('/')} sx={{ marginLeft: 5 }}>Logout</Button>

@@ -17,11 +17,13 @@ import { useQuery } from '@tanstack/react-query';
 import UserNavbar from '@/app/publicComponent/userNavbar';
 import CancelButton from './components/cancelButton';
 
+import useUserRequestStore from "@/app/store/userRequestStore"
 
 
 export default function RequestTable() {
   
-    let [request, setRequest] = useState([])
+    let request = useUserRequestStore((state) => state.request)
+    let setRequest = useUserRequestStore((state) => state.setRequest)
 
     let { data } = useQuery({
       queryKey : ["userRequest"],
@@ -31,7 +33,8 @@ export default function RequestTable() {
      useEffect(() => {
         if(data)
         {
-          setRequest(data.data)
+          let res = data.data
+          setRequest(res.reverse())
         }
      }, [data])
 
