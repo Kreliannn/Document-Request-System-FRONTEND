@@ -12,7 +12,7 @@ export default function UserDashboard() {
             <UserNavbar />
    
             <br />
-            <div className="container m-auto" style={{width : "60%"}}>
+            <div className="container m-auto w-full md:w-3/5" >
                 <RequestForm />
             </div>
           

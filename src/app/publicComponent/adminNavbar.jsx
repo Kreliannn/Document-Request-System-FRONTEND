@@ -21,6 +21,7 @@ const AdminNavbar = () => {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
+                    <img src="/img/img1.png" alt="Logo" style={{ margin: '10px', height : "40px", width : "50x"}} />
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         ADMIN
                     </Typography>

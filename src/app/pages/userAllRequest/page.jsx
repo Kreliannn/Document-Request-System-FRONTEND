@@ -60,72 +60,72 @@ export default function RequestTable() {
 
  
 
-  return (
-    <>
+    return (
+      <>
         <UserNavbar />
         <br />
-       <h1 className='text-center text-xl m-3'> User Request Status </h1>
+        <h1 className='text-center text-xl m-3'> User Request Status </h1>
         <hr />
-        <TableContainer component={Paper} className="w-4/5 mx-auto mt-8">
-        
-        <Table className="min-w-full  shadow-lg">
-          <TableHead>
-            <TableRow className="bg-gray-100">
-              <TableCell className="font-bold">Name</TableCell>
-              <TableCell className="font-bold">Type of Document</TableCell>
-              <TableCell className="font-bold">ModeOfPayment</TableCell>
-              <TableCell className="font-bold">Transaction</TableCell>
-              <TableCell className="font-bold">Fee</TableCell>
-              <TableCell className="font-bold">RequestDate</TableCell>
-              <TableCell className="font-bold">Status</TableCell>
-              <TableCell className="font-bold">Cancel</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {request?.map((row) => (
-              <TableRow key={row._id} className="hover:bg-gray-50">
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.typeOfDocument}</TableCell>
-                <TableCell>{row.modeOfPayment}</TableCell>
-                <TableCell>{row.transaction}</TableCell>
-                <TableCell>{row.fee}</TableCell>
-                <TableCell>{convertDate(row.requestDate)}</TableCell>
-                <TableCell>
-                  {row.status === "Pending" && (
-                    <span className="inline-block px-3 py-1 text-sm font-semibold text-yellow-800 bg-yellow-100 rounded-full">
-                      {row.status}
-                    </span>
-                  )}
-                  {row.status === "InProcess" && (
-                    <span className="inline-block px-3 py-1 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full">
-                      {row.status}
-                    </span>
-                  )}
-                  {row.status === "ToReceived" && (
-                    <span className="inline-block px-3 py-1 text-sm font-semibold text-violet-800 bg-violet-100 rounded-full">
-                      {row.status}
-                    </span>
-                  )}
-                  {row.status === "Rejected" && (
-                    <span className="inline-block px-3 py-1 text-sm font-semibold text-red-800 bg-red-100 rounded-full">
-                      {row.status}
-                    </span>
-                  )}
-                  {row.status === "Completed" && (
-                    <span className="inline-block px-3 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">
-                      {row.status}
-                    </span>
-                  )}
-                </TableCell>
-
-                <TableCell>
-                  <CancelButton status={row.status} reqId={row._id} />
-                </TableCell>
+        <TableContainer component={Paper} className="w-full mx-auto mt-8 overflow-x-auto">
+          <Table className="min-w-full shadow-lg">
+            <TableHead>
+              <TableRow className="bg-gray-100">
+                <TableCell className="font-bold text-xs sm:text-sm">Name</TableCell>
+                <TableCell className="font-bold text-xs sm:text-sm">Type of Document</TableCell>
+                <TableCell className="font-bold text-xs sm:text-sm">ModeOfPayment</TableCell>
+                <TableCell className="font-bold text-xs sm:text-sm">Transaction</TableCell>
+                <TableCell className="font-bold text-xs sm:text-sm">Fee</TableCell>
+                <TableCell className="font-bold text-xs sm:text-sm">RequestDate</TableCell>
+                <TableCell className="font-bold text-xs sm:text-sm">Status</TableCell>
+                <TableCell className="font-bold text-xs sm:text-sm">Cancel</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
-  );
+            </TableHead>
+            <TableBody>
+              {request?.map((row) => (
+                <TableRow key={row._id} className="hover:bg-gray-50">
+                  <TableCell className="text-xs sm:text-sm">{row.name}</TableCell>
+                  <TableCell className="text-xs sm:text-sm">{row.typeOfDocument}</TableCell>
+                  <TableCell className="text-xs sm:text-sm">{row.modeOfPayment}</TableCell>
+                  <TableCell className="text-xs sm:text-sm">{row.transaction}</TableCell>
+                  <TableCell className="text-xs sm:text-sm">{row.fee}</TableCell>
+                  <TableCell className="text-xs sm:text-sm">{convertDate(row.requestDate)}</TableCell>
+                  <TableCell className="text-xs sm:text-sm">
+                    {row.status === "Pending" && (
+                      <span className="inline-block px-2 py-1 text-xs sm:text-sm font-semibold text-yellow-800 bg-yellow-100 rounded-full">
+                        {row.status}
+                      </span>
+                    )}
+                    {row.status === "InProcess" && (
+                      <span className="inline-block px-2 py-1 text-xs sm:text-sm font-semibold text-blue-800 bg-blue-100 rounded-full">
+                        {row.status}
+                      </span>
+                    )}
+                    {row.status === "ToReceived" && (
+                      <span className="inline-block px-2 py-1 text-xs sm:text-sm font-semibold text-violet-800 bg-violet-100 rounded-full">
+                        {row.status}
+                      </span>
+                    )}
+                    {row.status === "Rejected" && (
+                      <span className="inline-block px-2 py-1 text-xs sm:text-sm font-semibold text-red-800 bg-red-100 rounded-full">
+                        {row.status}
+                      </span>
+                    )}
+                    {row.status === "Completed" && (
+                      <span className="inline-block px-2 py-1 text-xs sm:text-sm font-semibold text-green-800 bg-green-100 rounded-full">
+                        {row.status}
+                      </span>
+                    )}
+                  </TableCell>
+    
+                  <TableCell className="text-xs sm:text-sm">
+                    <CancelButton status={row.status} reqId={row._id} />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </>
+    );
+    
 }

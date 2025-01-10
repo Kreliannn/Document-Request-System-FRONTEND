@@ -9,15 +9,14 @@ import {
   InputLabel, 
   Button, 
   Typography,
-  ThemeProvider,
-  createTheme,
+
   Paper
 } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import useUserStore from '@/app/store/userStore';
 import Swal from 'sweetalert2';
-const theme = createTheme();
+
 
 export default function RequestDocumentForm() {
 
@@ -89,8 +88,8 @@ export default function RequestDocumentForm() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className="container mx-auto p-4">
+    
+      <div className="container mx-auto p-4 ">
         <Typography variant="h4" className="mb-4 text-center">
           Barangay Document Request Form
         </Typography>
@@ -281,7 +280,7 @@ export default function RequestDocumentForm() {
             {(paymentMode === "creditCard" || 
               paymentMode === "gcash" || 
               paymentMode === "BankTransfer") && (
-                <Typography variant="h6" className="m-3">
+                <Typography variant="h6" className="m-3 text-gray-500">
                   If you choose online payment, the transaction will follow a "payment-first" policy. Please ensure that you include the reference number before submitting your request; otherwise, the admin will reject it.
                 </Typography>
             )}
@@ -290,15 +289,16 @@ export default function RequestDocumentForm() {
           <Button 
             type="submit" 
             variant="contained" 
-            color="primary" 
-            className="w-full shadow-lg h-12" 
+            
+            className="w-full shadow-lg h-12 " 
             onClick={submit}
+            
           >
             Submit Request
           </Button>
         </div>
       </div>
-    </ThemeProvider>
+   
   );
 }
 

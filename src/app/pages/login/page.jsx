@@ -44,7 +44,7 @@ export default function SignIn() {
   return (
     <>
       <LandingpageNavbar />
-      <br /> <br /> 
+      
       <Box 
         sx={{
           display: 'flex',

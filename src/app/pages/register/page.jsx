@@ -50,7 +50,7 @@ export default function SignUp() {
   return (
     <>
     <LandingpageNavbar />
-    <br />
+    
     <Box 
       sx={{
         display: 'flex',

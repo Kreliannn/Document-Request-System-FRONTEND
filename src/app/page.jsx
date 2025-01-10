@@ -6,6 +6,8 @@ import Link from 'next/link'
 import "./style.css"
 import LandingpageNavbar from './publicComponent/landingpageNavbar'
 
+
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen to-white landingPage" style={{backgroundImage: "url('/public/img/img2.jpeg')",}}>
@@ -14,7 +16,7 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <div 
-        className="relative min-h-screen flex items-center justify-center example"
+        className="relative min-h-screen flex  justify-center example"
         style={{
           
           backgroundSize: 'cover',
@@ -23,10 +25,11 @@ export default function LandingPage() {
       >
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-1 text-center text-white px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Welcome to Barangay Kanlurang Mayao
+          <br /><br /> <br /><br /> <br /> <br /> <br />
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+           Barangay Kanlurang Mayao
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          <p className="text-md md:text-2xl mb-8 max-w-3xl mx-auto">
             Your one-stop portal for requesting barangay documents and certificates online
           </p>
           <Button size="lg" className="text-lg px-8" variant="contained" color='primary'>
