@@ -9,7 +9,7 @@ import LandingpageNavbar from "@/app/publicComponent/landingpageNavbar";
 import Image from 'next/image';
 
 export default function SignIn() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   let setUser = useUserStore(state => state.setUser)
@@ -19,12 +19,14 @@ export default function SignIn() {
   let mutation = useMutation({
     mutationFn : (data) => axios.post('http://localhost:4000/api/login', data, { withCredentials: true }),
     onSuccess: (response) => {
-      setEmail('')
+      console.log(response)
+      setUsername('')
       setPassword('')
       setUser(response.data)
       window.location.href = '/pages/userDashboard'
     },
     onError: (error) => {
+      console.log(error)
       Swal.fire({
         icon: 'error',
         title:error.response.data,
@@ -35,7 +37,7 @@ export default function SignIn() {
 
   let signIn = () => {
     let user = {
-      username: email,
+      username: username,
       password: password
     }
     mutation.mutate(user)
@@ -78,12 +80,12 @@ export default function SignIn() {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  label="Email"
+                  label="Username"
                   variant="outlined"
-                  type="email"
-                  value={email}
+                  type="text"
+                  value={username}
                   required
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>

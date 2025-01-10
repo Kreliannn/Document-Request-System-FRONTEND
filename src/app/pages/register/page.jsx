@@ -10,6 +10,7 @@ export default function SignUp() {
     
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState(null);
@@ -40,6 +41,7 @@ export default function SignUp() {
         let newUser = {
             name: name,
             email: email,
+            username : username,
             password: password,
             confirmPassword: confirmPassword
         }
@@ -94,12 +96,24 @@ export default function SignUp() {
               <TextField
                 
                 fullWidth
-                label="Email"
+                label="Email (optional)"
                 variant="outlined"
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                
+                fullWidth
+                label="Username"
+                variant="outlined"
+                type="text"
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>

@@ -106,7 +106,7 @@ export default function RequestDocumentForm() {
           />
           <TextField
             fullWidth
-            label="Email"
+            label="Email (optional)"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -281,7 +281,13 @@ export default function RequestDocumentForm() {
               paymentMode === "gcash" || 
               paymentMode === "BankTransfer") && (
                 <Typography variant="h6" className="m-3 text-gray-500">
-                  If you choose online payment, the transaction will follow a "payment-first" policy. Please ensure that you include the reference number before submitting your request; otherwise, the admin will reject it.
+                  *If you choose online payment, the transaction will follow a "payment-first" policy. Please ensure that you include the reference number before submitting your request; otherwise, the admin will reject it.
+                </Typography>
+            )}
+
+          {(email === "" ) && (
+                <Typography variant="h6" className="m-3 mt-5 text-gray-500">
+                    *By entering your email address, you will receive notifications for every documents status changes directly to your Gmail account.
                 </Typography>
             )}
           </Paper>
