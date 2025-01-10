@@ -28,7 +28,7 @@ export default function UserDashboard() {
                 { title: 'Approved Requests', count: response.approvedRequest, color: 'bg-green-500' },
                 { title: 'Rejected Requests', count: response.rejectRequest, color: 'bg-red-500' },
                 { title: 'For Pickup', count: response.forPickUpRequest, color: 'bg-blue-500' },
-                { title: 'For Delivery', count: response.forDeliverRequest, color: 'bg-gray-500' },
+                { title: 'For Delivery', count: response.forDeliverRequest, color: 'bg-gray-500' }
               ] )
         }
     }, [data])

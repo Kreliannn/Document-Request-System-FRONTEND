@@ -76,7 +76,7 @@ export default function RequestTable() {
               <TableCell>{row.typeOfDocument}</TableCell>
               <TableCell>{row.purpose}</TableCell>
               <TableCell>{row.modeOfPayment}</TableCell>
-              <TableCell>{row.fee}</TableCell>
+              <TableCell>₱{row.fee}</TableCell>
               <TableCell>{(row.referenceNumber) ? row.referenceNumber : "none"}</TableCell>
               <TableCell>{convertDate(row.requestDate)}</TableCell>
               <TableCell>{row.status}</TableCell>

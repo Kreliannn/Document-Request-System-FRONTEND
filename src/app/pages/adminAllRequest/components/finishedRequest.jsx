@@ -62,7 +62,7 @@ export default function finishedRequestTable() {
               <TableCell>{row.address}</TableCell>
               <TableCell>{row.modeOfPayment}</TableCell>
               <TableCell>{row.transaction}</TableCell>
-              <TableCell>{row.fee}</TableCell>
+              <TableCell>₱{row.fee}</TableCell>
               <TableCell>{row.status}</TableCell>
               <TableCell>
                 <ButtontoComplete reqId={row._id} />
