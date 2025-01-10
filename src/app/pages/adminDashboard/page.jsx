@@ -30,7 +30,7 @@ export default function AdminDashboard() {
             setApprovedRequests(response?.approvedRequest);
             setRejectedRequests(response?.rejectRequest);
             setForPickup(response?.forPickUpRequest);
-            setForDelivery(response?.forDeliveryRequest);
+            setForDelivery(response?.forDeliverRequest);
         }
     }, [data])
      
