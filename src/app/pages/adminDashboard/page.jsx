@@ -9,7 +9,12 @@ import axios from "axios";
 export default function AdminDashboard() {
 
     
-    let [info, setInfo] = useState(null)
+    const [pendingRequests, setPendingRequests] = useState(0);
+    const [totalReceivedFee, setTotalReceivedFee] = useState(0);
+    const [approvedRequests, setApprovedRequests] = useState(0);
+    const [rejectedRequests, setRejectedRequests] = useState(0);
+    const [forPickup, setForPickup] = useState(0);
+    const [forDelivery, setForDelivery] = useState(0);
     
     let { data } = useQuery({
         queryKey : ["adminData"],
@@ -20,14 +25,12 @@ export default function AdminDashboard() {
         if(data)
         {
             let response = data.data
-            setInfo([
-                { title: 'Pending Requests', count: response.pendingRequest, color: 'bg-black' },
-                { title: 'Total Received Fee', count: response.totalFee, color: 'bg-purple-500' },
-                { title: 'Approved Requests', count: response.approvedRequest, color: 'bg-green-500' },
-                { title: 'Rejected Requests', count: response.rejectRequest, color: 'bg-red-500' },
-                { title: 'For Pickup', count: response.forPickUpRequest, color: 'bg-blue-500' },
-                { title: 'For Delivery', count: response.forDeliverRequest, color: 'bg-gray-500' },
-              ] )
+            setPendingRequests(response.pendingRequest);
+            setTotalReceivedFee(response?.totalFee);
+            setApprovedRequests(response?.approvedRequest);
+            setRejectedRequests(response?.rejectRequest);
+            setForPickup(response?.forPickUpRequest);
+            setForDelivery(response?.forDeliveryRequest);
         }
     }, [data])
      
@@ -44,21 +47,108 @@ export default function AdminDashboard() {
             </Typography>
             <br />
             <div className="container m-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-4" style={{width : "70%"}}>
-                {info?.map((stat, index) => (
+                
                     <Card
                     key={index}
-                    className={`shadow-lg ${stat.color} text-white`}
+                    className={`shadow-lg bg-black text-white`}
                     >
                     <CardContent>
                         <Typography variant="h6" className="font-bold">
-                        {stat.title}
+                            Pending Requests
                         </Typography>
                         <Typography variant="h4" className="font-extrabold mt-2">
-                        {stat.count}
+                        {pendingRequests}
                         </Typography>
                     </CardContent>
                     </Card>
-                ))}
+
+
+                    <Card
+                    key={index}
+                    className={`shadow-lg bg-black text-white`}
+                    >
+                    <CardContent>
+                        <Typography variant="h6" className="font-bold">
+                        Total Received Fee
+                        </Typography>
+                        <Typography variant="h4" className="font-extrabold mt-2">
+                        {totalReceivedFee}
+                        </Typography>
+                    </CardContent>
+                    </Card>
+
+
+
+                    <Card
+                    key={index}
+                    className={`shadow-lg bg-black text-white`}
+                    >
+                    <CardContent>
+                        <Typography variant="h6" className="font-bold">
+                        Approved Requests
+                        </Typography>
+                        <Typography variant="h4" className="font-extrabold mt-2">
+                        {approvedRequests}
+                        </Typography>
+                    </CardContent>
+                    </Card>
+
+
+
+                    <Card
+                    key={index}
+                    className={`shadow-lg bg-black text-white`}
+                    >
+                    <CardContent>
+                        <Typography variant="h6" className="font-bold">
+                        Rejected Requests
+                        </Typography>
+                        <Typography variant="h4" className="font-extrabold mt-2">
+                        {rejectedRequests}
+                        </Typography>
+                    </CardContent>
+                    </Card>
+
+
+
+
+                    <Card
+                    key={index}
+                    className={`shadow-lg bg-black text-white`}
+                    >
+                    <CardContent>
+                        <Typography variant="h6" className="font-bold">
+                        For Pickup
+                        </Typography>
+                        <Typography variant="h4" className="font-extrabold mt-2">
+                        {forPickup}
+                        </Typography>
+                    </CardContent>
+                    </Card>
+
+
+
+                    <Card
+                    key={index}
+                    className={`shadow-lg bg-black text-white`}
+                    >
+                    <CardContent>
+                        <Typography variant="h6" className="font-bold">
+                        For Delivery
+                        </Typography>
+                        <Typography variant="h4" className="font-extrabold mt-2">
+                        { forDelivery}
+                        </Typography>
+                    </CardContent>
+                    </Card>
+
+
+
+
+                  
+
+                    
+                
             </div>
         </div>
     )
