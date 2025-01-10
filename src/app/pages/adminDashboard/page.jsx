@@ -118,7 +118,7 @@ export default function AdminDashboard() {
                     >
                     <CardContent>
                         <Typography variant="h6" className="font-bold">
-                        For Pickup
+                        For Pickup Requests
                         </Typography>
                         <Typography variant="h4" className="font-extrabold mt-2">
                         {forPickup}
@@ -134,7 +134,7 @@ export default function AdminDashboard() {
                     >
                     <CardContent>
                         <Typography variant="h6" className="font-bold">
-                        For Delivery
+                        For Delivery Requests
                         </Typography>
                         <Typography variant="h4" className="font-extrabold mt-2">
                         { forDelivery}
