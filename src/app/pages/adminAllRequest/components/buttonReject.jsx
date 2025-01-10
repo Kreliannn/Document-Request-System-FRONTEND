@@ -11,7 +11,7 @@ export default function ButtonReject(props)
   let removeRequest = useRequestStore((state) => state.removeRequest)
 
     let mutation = useMutation({
-      mutationFn : (data) => axios.patch(`http://localhost:4000/api/rejectRequest/${data}`),
+      mutationFn : (data) => axios.patch(`https://requestsystembackend-2.onrender.com/api/rejectRequest/${data}`),
     })
 
     let reject = () => {

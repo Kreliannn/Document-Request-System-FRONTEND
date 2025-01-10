@@ -21,7 +21,7 @@ const LandingNavbar = () => {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const mutation = useMutation({
-        mutationFn: () => axios.post('http://localhost:4000/api/logout', {}, { withCredentials: true }),
+        mutationFn: () => axios.post('https://requestsystembackend-2.onrender.com/api/logout', {}, { withCredentials: true }),
         onSuccess: () => {
             clearUser();
             router.push('/'); // Redirect to the home page

@@ -13,7 +13,7 @@ export default function AdminDashboard() {
     
     let { data } = useQuery({
         queryKey : ["adminData"],
-        queryFn : () => axios.get('http://localhost:4000/api/adminDashboard')
+        queryFn : () => axios.get('https://requestsystembackend-2.onrender.com/api/adminDashboard')
     })
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function AdminDashboard() {
         {
             let response = data.data
             setInfo([
-                { title: 'Pending Requests', count: response.pendingRequest, color: 'bg-yellow-500' },
+                { title: 'Pending Requests', count: response.pendingRequest, color: 'bg-black' },
                 { title: 'Total Received Fee', count: response.totalFee, color: 'bg-purple-500' },
                 { title: 'Approved Requests', count: response.approvedRequest, color: 'bg-green-500' },
                 { title: 'Rejected Requests', count: response.rejectRequest, color: 'bg-red-500' },

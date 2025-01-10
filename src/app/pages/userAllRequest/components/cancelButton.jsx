@@ -11,7 +11,7 @@ export default function CancelButton(props)
   let removeRequest = useUserRequestStore((state) => state.removeRequest)
 
     let mutation = useMutation({
-      mutationFn : (data) => axios.delete(`http://localhost:4000/api/cancelRequest/` + data)
+      mutationFn : (data) => axios.delete(`https://requestsystembackend-2.onrender.com/api/cancelRequest/` + data)
     })
 
     let cancel = () => {

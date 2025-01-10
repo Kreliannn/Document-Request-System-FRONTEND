@@ -24,7 +24,7 @@ export default function ApprovedRequestTable() {
 
     let { data } = useQuery({
         queryKey : ['request'],
-        queryFn : () => axios.get("http://localhost:4000/api/getRequest/InProcess")
+        queryFn : () => axios.get("https://requestsystembackend-2.onrender.com/api/getRequest/InProcess")
     })
 
     useEffect(() => {

@@ -24,7 +24,7 @@ export default  function RequestTable() {
   
     let { data } = useQuery({
       queryKey : ["historyUser"],
-      queryFn : () => axios.get("http://localhost:4000/api/requestHistory", { withCredentials : true})
+      queryFn : () => axios.get("https://requestsystembackend-2.onrender.com/api/requestHistory", { withCredentials : true})
     })
     
     useEffect(() => {

@@ -27,7 +27,7 @@ export default function RequestTable() {
 
     let { data } = useQuery({
       queryKey : ["userRequest"],
-      queryFn : () => axios.get("http://localhost:4000/api/userRequest", {withCredentials : true})
+      queryFn : () => axios.get("https://requestsystembackend-2.onrender.com/api/userRequest", {withCredentials : true})
     })
 
      useEffect(() => {

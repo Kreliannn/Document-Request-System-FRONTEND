@@ -25,7 +25,7 @@ export default function finishedRequestTable() {
 
     let { data } = useQuery({
         queryKey : ['request'],
-        queryFn : () => axios.get("http://localhost:4000/api/getRequest/ToReceived")
+        queryFn : () => axios.get("https://requestsystembackend-2.onrender.com/api/getRequest/ToReceived")
     })
 
     useEffect(() => {

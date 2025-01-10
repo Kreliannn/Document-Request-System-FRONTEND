@@ -16,7 +16,7 @@ export default function SignUp() {
     const [error, setError] = useState(null);
 
     let mutation = useMutation({
-        mutationFn : (data) => axios.post('http://localhost:4000/api/register', data),
+        mutationFn : (data) => axios.post('https://requestsystembackend-2.onrender.com/api/register', data),
         onSuccess: (response) => {
             setName('')
             setEmail('')

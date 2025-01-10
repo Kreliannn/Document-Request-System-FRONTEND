@@ -10,7 +10,7 @@ export default function ButtontoReceive(props)
     let removeRequest = useApproveRequestStore((state) => state.removeRequest)
 
     let mutation = useMutation({
-      mutationFn : (data) => axios.patch(`http://localhost:4000/api/toReceiveRequest/${data}`),
+      mutationFn : (data) => axios.patch(`https://requestsystembackend-2.onrender.com/api/toReceiveRequest/${data}`),
     })
 
     let approve = () => {
