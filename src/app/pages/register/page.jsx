@@ -21,6 +21,7 @@ export default function SignUp() {
             setName('')
             setEmail('')
             setPassword('')
+            setUsername('')
             setConfirmPassword('')
             Swal.fire({
               icon: 'success',

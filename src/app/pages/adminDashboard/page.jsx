@@ -18,7 +18,8 @@ export default function AdminDashboard() {
     
     let { data } = useQuery({
         queryKey : ["adminData"],
-        queryFn : () => axios.get('https://requestsystembackend-2.onrender.com/api/adminDashboard')
+        queryFn : () => axios.get('https://requestsystembackend-2.onrender.com/api/adminDashboard'),
+        refetchInterval : 5000
     })
 
     useEffect(() => {
@@ -31,6 +32,7 @@ export default function AdminDashboard() {
             setRejectedRequests(response?.rejectRequest);
             setForPickup(response?.forPickUpRequest);
             setForDelivery(response?.forDeliverRequest);
+            console.log("mounted")
         }
     }, [data])
      
