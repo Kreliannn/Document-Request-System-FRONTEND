@@ -9,7 +9,7 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('');
 
   let adminLogin = () => {
-    if(username == "admin" && password == "123456789")
+    if(username == "admin" && password == "kanlurangmayao")
     {
       window.location.href = "/pages/adminDashboard"
     }
