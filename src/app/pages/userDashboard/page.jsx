@@ -14,7 +14,8 @@ export default function UserDashboard() {
     
     let { data } = useQuery({
         queryKey : ["adminData"],
-        queryFn : () => axios.get('https://requestsystembackend-2.onrender.com/api/userDashboard', {withCredentials : true})
+        queryFn : () => axios.get('https://requestsystembackend-2.onrender.com/api/userDashboard', {withCredentials : true}),
+        refetchInterval : 5000
     })
 
     useEffect(() => {

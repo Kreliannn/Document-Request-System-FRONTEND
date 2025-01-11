@@ -40,7 +40,8 @@ export default function NotificationPage() {
 
     let { data } = useQuery({
         queryKey : ['notif'],
-        queryFn : () => axios.get("https://requestsystembackend-2.onrender.com/api/getNotif", { withCredentials : true })
+        queryFn : () => axios.get("https://requestsystembackend-2.onrender.com/api/getNotif", { withCredentials : true }),
+        refetchInterval : 5000
     })
 
     let mutation = useMutation({

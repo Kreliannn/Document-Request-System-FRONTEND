@@ -25,7 +25,8 @@ export default function RequestTable() {
 
     let { data } = useQuery({
         queryKey : ['request'],
-        queryFn : () => axios.get("https://requestsystembackend-2.onrender.com/api/getRequest/Pending")
+        queryFn : () => axios.get("https://requestsystembackend-2.onrender.com/api/getRequest/Pending"),
+        refetchInterval : 5000
     })
 
     useEffect(() => {
