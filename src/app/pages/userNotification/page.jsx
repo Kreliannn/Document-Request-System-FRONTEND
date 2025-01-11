@@ -45,7 +45,7 @@ export default function NotificationPage() {
     })
 
     let mutation = useMutation({
-        mutationFn : (id) => axios.delete("http://localhost:4000/api/deleteNotif/" + id)
+        mutationFn : (id) => axios.delete("https://requestsystembackend-2.onrender.com/api/deleteNotif/" + id)
     })
 
     useEffect(() => {
