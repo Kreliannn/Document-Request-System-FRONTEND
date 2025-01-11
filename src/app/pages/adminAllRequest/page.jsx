@@ -25,7 +25,7 @@ export default function AdminAllRequest()
                     InProcess
                 </Button>
                 <Button variant={(table == "finished") ? "contained" : "outlined"} onClick={ ()=> setTable("finished")} size="large">
-                    ToPickUP
+                    ToReceived
                 </Button>
 
             </div>
