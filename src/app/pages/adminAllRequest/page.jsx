@@ -17,16 +17,15 @@ export default function AdminAllRequest()
             <br /><br />
             <div className='container m-auto w-80 flex justify-center gap-4 '>
 
-                <Button variant={(table == "request") ? "contained" : "outlined"} onClick={ ()=> setTable("request")}>
+                <Button variant={(table == "request") ? "contained" : "outlined"} onClick={ ()=> setTable("request")}  size="large">
                     Pending
                 </Button>
 
-                <Button variant={(table == "approved") ? "contained" : "outlined"} onClick={ ()=> setTable("approved")} >
+                <Button variant={(table == "approved") ? "contained" : "outlined"} onClick={ ()=> setTable("approved")}  size="large">
                     InProcess
                 </Button>
-
-                <Button variant={(table == "finished") ? "contained" : "outlined"} onClick={ ()=> setTable("finished")} >
-                    ToPickUP/Deliver
+                <Button variant={(table == "finished") ? "contained" : "outlined"} onClick={ ()=> setTable("finished")} size="large">
+                    ToPickUP
                 </Button>
 
             </div>
