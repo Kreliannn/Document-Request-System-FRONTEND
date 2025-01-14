@@ -47,9 +47,6 @@ const LandingNavbar = () => {
                 <Toolbar className="justify-between">
                     <div className="flex items-center">
                         <img src="/img/img1.png" alt="Logo" className="mr-2 h-10 w-[50px]" />
-                        <Typography variant="h6" component="div" className="hidden sm:block">
-                            {user?.name}
-                        </Typography>
                     </div>
 
                     {/* Desktop Navigation */}
