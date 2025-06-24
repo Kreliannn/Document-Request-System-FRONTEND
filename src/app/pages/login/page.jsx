@@ -22,7 +22,7 @@ export default function SignIn() {
       console.log(response)
       setUsername('')
       setPassword('')
-      setUser(response.data)
+      alert('Login Successful')
       window.location.href = '/pages/userDashboard'
     },
     onError: (error) => {
