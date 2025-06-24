@@ -16,7 +16,7 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <div 
-        className="relative min-h-screen flex  justify-center example"
+        className="relative h-[550px] flex  justify-center example"
         style={{
           
           backgroundSize: 'cover',
@@ -27,7 +27,7 @@ export default function LandingPage() {
         <div className="relative z-1 text-center text-white px-4">
           <br /><br /> <br /><br /> <br /> <br /> <br />
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-           Barangay Kanlurang Mayao
+           Barangay Document Request System
           </h1>
           <p className="text-md md:text-2xl mb-8 max-w-3xl mx-auto">
             Your one-stop portal for requesting barangay documents and certificates online
@@ -41,7 +41,7 @@ export default function LandingPage() {
       {/* Features Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
+          
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
